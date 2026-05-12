@@ -1,0 +1,25 @@
+{
+  "name": "taiwan-rail-fare-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "台灣鐵路票價觀察網站 - Express + SQLite + Frontend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "sqlite",
+    "taiwan",
+    "railway",
+    "inflation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台鐵票價觀察站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <main class="shell">
+    <header class="hero">
+      <div class="eyebrow">Taiwan Rail Fare Tracker</div>
+      <h1>台鐵票價觀察站</h1>
+      <p class="hero-copy">以「台灣鐵路票價」為主題，記錄日期、商品名稱與價格變化，快速查詢不同車種與路線的票價資料。</p>
+      <div class="hero-pills">
+        <span>前端網頁</span>
+        <span>Express API</span>
+        <span>SQLite 資料庫</span>
+      </div>
+    </header>
+
+    <section class="grid">
+      <article class="card accent-card">
+        <h2>新增票價紀錄</h2>
+        <form id="recordForm" class="form">
+          <label>
+            <span>日期</span>
+            <input type="date" name="recordDate" required />
+          </label>
+          <label>
+            <span>商品名稱</span>
+            <input type="text" name="itemName" placeholder="例如：台北-高雄自強號全票" required />
+          </label>
+          <label>
+            <span>商品價格</span>
+            <input type="number" name="price" min="1" step="1" placeholder="例如：843" required />
+          </label>
+          <label>
+            <span>資料來源網站</span>
+            <input type="text" name="sourceSite" placeholder="例如：台鐵官方網站 / 新聞公告" required />
+          </label>
+          <label>
+            <span>備註</span>
+            <textarea name="note" rows="3" placeholder="例如：票價調整公告、資料觀察說明"></textarea>
+          </label>
+          <button type="submit">儲存紀錄</button>
+        </form>
+        <p id="formStatus" class="status"></p>
+      </article>
+
+      <article class="card summary-card">
+        <h2>查詢條件</h2>
+        <div class="search-boxes">
+          <label>
+            <span>關鍵字</span>
+            <input type="text" id="searchInput" placeholder="搜尋商品名稱或來源網站" />
+          </label>
+          <label>
+            <span>商品名稱</span>
+            <input type="text" id="nameFilter" placeholder="例如：自強號" />
+          </label>
+          <label>
+            <span>起始日期</span>
+            <input type="date" id="fromDate" />
+          </label>
+          <label>
+            <span>結束日期</span>
+            <input type="date" id="toDate" />
+          </label>
+          <button id="searchButton" type="button">重新查詢</button>
+        </div>
+
+        <div class="stats" id="stats"></div>
+      </article>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-header">
+        <div>
+          <h2>物價變化清單</h2>
+          <p>直接以表格呈現票價紀錄，方便比較不同日期的價格變化。</p>
+        </div>
+        <span id="resultCount" class="result-count"></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>商品名稱</th>
+              <th>價格</th>
+              <th>資料來源網站</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody id="recordsTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <template id="recordRowTemplate">
+    <tr>
+      <td data-field="record_date"></td>
+      <td data-field="item_name"></td>
+      <td data-field="price"></td>
+      <td data-field="source_site"></td>
+      <td data-field="note"></td>
+    </tr>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
